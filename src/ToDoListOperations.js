@@ -1,10 +1,11 @@
 import { projects, todoListItems , currentProject,} from ".";
 import { updateToDoListItems, deleteElement } from "./domManipulationUtility";
+import { v4 as uuidv4 } from 'uuid';
 
 export function createToDoListItem(form){
     const formData = new FormData(form);
     const toDoItem = {};
-    toDoItem['id'] = crypto.randomUUID();
+    toDoItem['id'] = uuidv4();
     formData.forEach((value,key)=> toDoItem[key]= value);
     toDoItem['project'] = currentProject;
     todoListItems.push(toDoItem);
