@@ -110,13 +110,73 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./node_modules/uuid/dist/esm-browser/native.js":
+/*!******************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/native.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  randomUUID\n});\n\n//# sourceURL=webpack://todo-list/./node_modules/uuid/dist/esm-browser/native.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/regex.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);\n\n//# sourceURL=webpack://todo-list/./node_modules/uuid/dist/esm-browser/regex.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/rng.js":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/rng.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ rng)\n/* harmony export */ });\n// Unique ID creation requires a high quality random # generator. In the browser we therefore\n// require the crypto API and do not support built-in fallback to lower quality random number\n// generators (like Math.random()).\nlet getRandomValues;\nconst rnds8 = new Uint8Array(16);\nfunction rng() {\n  // lazy load so that environments that need to polyfill have a chance to do so\n  if (!getRandomValues) {\n    // getRandomValues needs to be invoked in a context where \"this\" is a Crypto implementation.\n    getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);\n\n    if (!getRandomValues) {\n      throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');\n    }\n  }\n\n  return getRandomValues(rnds8);\n}\n\n//# sourceURL=webpack://todo-list/./node_modules/uuid/dist/esm-browser/rng.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/stringify.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   unsafeStringify: () => (/* binding */ unsafeStringify)\n/* harmony export */ });\n/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ \"./node_modules/uuid/dist/esm-browser/validate.js\");\n\n/**\n * Convert array of 16 byte values to UUID string format of the form:\n * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX\n */\n\nconst byteToHex = [];\n\nfor (let i = 0; i < 256; ++i) {\n  byteToHex.push((i + 0x100).toString(16).slice(1));\n}\n\nfunction unsafeStringify(arr, offset = 0) {\n  // Note: Be careful editing this code!  It's been tuned for performance\n  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434\n  return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();\n}\n\nfunction stringify(arr, offset = 0) {\n  const uuid = unsafeStringify(arr, offset); // Consistency check for valid UUID.  If this throws, it's likely due to one\n  // of the following:\n  // - One or more input array values don't map to a hex octet (leading to\n  // \"undefined\" in the uuid)\n  // - Invalid input values for the RFC `version` or `variant` fields\n\n  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(uuid)) {\n    throw TypeError('Stringified UUID is invalid');\n  }\n\n  return uuid;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stringify);\n\n//# sourceURL=webpack://todo-list/./node_modules/uuid/dist/esm-browser/stringify.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/v4.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _native_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./native.js */ \"./node_modules/uuid/dist/esm-browser/native.js\");\n/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rng.js */ \"./node_modules/uuid/dist/esm-browser/rng.js\");\n/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stringify.js */ \"./node_modules/uuid/dist/esm-browser/stringify.js\");\n\n\n\n\nfunction v4(options, buf, offset) {\n  if (_native_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].randomUUID && !buf && !options) {\n    return _native_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].randomUUID();\n  }\n\n  options = options || {};\n  const rnds = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`\n\n  rnds[6] = rnds[6] & 0x0f | 0x40;\n  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided\n\n  if (buf) {\n    offset = offset || 0;\n\n    for (let i = 0; i < 16; ++i) {\n      buf[offset + i] = rnds[i];\n    }\n\n    return buf;\n  }\n\n  return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_2__.unsafeStringify)(rnds);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v4);\n\n//# sourceURL=webpack://todo-list/./node_modules/uuid/dist/esm-browser/v4.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-browser/validate.js":
+/*!********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.js */ \"./node_modules/uuid/dist/esm-browser/regex.js\");\n\n\nfunction validate(uuid) {\n  return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].test(uuid);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);\n\n//# sourceURL=webpack://todo-list/./node_modules/uuid/dist/esm-browser/validate.js?");
+
+/***/ }),
+
 /***/ "./src/ToDoListOperations.js":
 /*!***********************************!*\
   !*** ./src/ToDoListOperations.js ***!
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   clearInputField: () => (/* binding */ clearInputField),\n/* harmony export */   createProject: () => (/* binding */ createProject),\n/* harmony export */   createToDoListItem: () => (/* binding */ createToDoListItem),\n/* harmony export */   fetchToDoItemsByProjectName: () => (/* binding */ fetchToDoItemsByProjectName),\n/* harmony export */   handleProject: () => (/* binding */ handleProject)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ \"./src/index.js\");\n/* harmony import */ var _domManipulationUtility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./domManipulationUtility */ \"./src/domManipulationUtility.js\");\n\n\n\nfunction createToDoListItem(form){\n    const formData = new FormData(form);\n    const toDoItem = {};\n    toDoItem['id'] = crypto.randomUUID();\n    formData.forEach((value,key)=> toDoItem[key]= value);\n    toDoItem['project'] = ___WEBPACK_IMPORTED_MODULE_0__.currentProject;\n    ___WEBPACK_IMPORTED_MODULE_0__.todoListItems.push(toDoItem);\n    //empties out the form input fields after we add a task\n    form.reset();\n}\n\n\nfunction createProject(projectName){\n    ___WEBPACK_IMPORTED_MODULE_0__.projects.push({name:projectName, todoItemCount:0});\n}\n\n//event handler for individual project\n// Fetches all todos for a particular project , clears the DOM and updates it with todos for that project.\nfunction handleProject(projectListItem){\n    projectListItem.addEventListener('click',(e) => {\n        ___WEBPACK_IMPORTED_MODULE_0__.currentProject = projectListItem.firstChild.getAttribute('id');\n        if(document.querySelector('.active')){\n            document.querySelector('.active').classList.remove('active');\n        }\n        projectListItem.classList.add('active');\n        const todoItems = fetchToDoItemsByProjectName(___WEBPACK_IMPORTED_MODULE_0__.currentProject);\n        const items = document.querySelector('.items');\n        //check items count\n        if(items){\n            (0,_domManipulationUtility__WEBPACK_IMPORTED_MODULE_1__.deleteElement)(items);\n        }\n        (0,_domManipulationUtility__WEBPACK_IMPORTED_MODULE_1__.updateToDoListItems)(todoItems);\n    })\n}\n\nfunction fetchToDoItemsByProjectName(project){\n    return ___WEBPACK_IMPORTED_MODULE_0__.todoListItems.filter(todoItem => todoItem.project === project);\n}\n\nfunction clearInputField(input){\n    input.value = '';\n}\n\n\n//# sourceURL=webpack://todo-list/./src/ToDoListOperations.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   clearInputField: () => (/* binding */ clearInputField),\n/* harmony export */   createProject: () => (/* binding */ createProject),\n/* harmony export */   createToDoListItem: () => (/* binding */ createToDoListItem),\n/* harmony export */   fetchToDoItemsByProjectName: () => (/* binding */ fetchToDoItemsByProjectName),\n/* harmony export */   handleProject: () => (/* binding */ handleProject)\n/* harmony export */ });\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ \"./src/index.js\");\n/* harmony import */ var _domManipulationUtility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./domManipulationUtility */ \"./src/domManipulationUtility.js\");\n/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ \"./node_modules/uuid/dist/esm-browser/v4.js\");\n\n\n\n\nfunction createToDoListItem(form){\n    const formData = new FormData(form);\n    const toDoItem = {};\n    toDoItem['id'] = (0,uuid__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n    formData.forEach((value,key)=> toDoItem[key]= value);\n    toDoItem['project'] = ___WEBPACK_IMPORTED_MODULE_0__.currentProject;\n    ___WEBPACK_IMPORTED_MODULE_0__.todoListItems.push(toDoItem);\n    //empties out the form input fields after we add a task\n    form.reset();\n}\n\n\nfunction createProject(projectName){\n    ___WEBPACK_IMPORTED_MODULE_0__.projects.push({name:projectName, todoItemCount:0});\n}\n\n//event handler for individual project\n// Fetches all todos for a particular project , clears the DOM and updates it with todos for that project.\nfunction handleProject(projectListItem){\n    projectListItem.addEventListener('click',(e) => {\n        ___WEBPACK_IMPORTED_MODULE_0__.currentProject = projectListItem.firstChild.getAttribute('id');\n        if(document.querySelector('.active')){\n            document.querySelector('.active').classList.remove('active');\n        }\n        projectListItem.classList.add('active');\n        const todoItems = fetchToDoItemsByProjectName(___WEBPACK_IMPORTED_MODULE_0__.currentProject);\n        const items = document.querySelector('.items');\n        //check items count\n        if(items){\n            (0,_domManipulationUtility__WEBPACK_IMPORTED_MODULE_1__.deleteElement)(items);\n        }\n        (0,_domManipulationUtility__WEBPACK_IMPORTED_MODULE_1__.updateToDoListItems)(todoItems);\n    })\n}\n\nfunction fetchToDoItemsByProjectName(project){\n    return ___WEBPACK_IMPORTED_MODULE_0__.todoListItems.filter(todoItem => todoItem.project === project);\n}\n\nfunction clearInputField(input){\n    input.value = '';\n}\n\n\n//# sourceURL=webpack://todo-list/./src/ToDoListOperations.js?");
 
 /***/ }),
 
